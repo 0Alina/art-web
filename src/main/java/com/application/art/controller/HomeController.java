@@ -14,9 +14,24 @@ public class HomeController {
         return "index";
     }
 
-//    @GetMapping("/blog")
-//    public String blogSingle(){
-//        return "blog-single";
-//    }
+    @GetMapping("/blog")
+    public String blogSingle(){
+        return "blog";
+    }
+
+    @GetMapping("/services")
+    public String services(){
+        return "services";
+    }
+
+    @GetMapping("/portfolio")
+    public String portfolio(){
+        return "portfolio";
+    }
+
+    @GetMapping("/contact")
+    public String contact(){
+        return "contact";
+    }
 
 }
