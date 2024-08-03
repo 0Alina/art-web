@@ -33,6 +33,12 @@ public class HomeController {
         return "portfolio";
     }
 
+    @GetMapping("/about")
+    public String about(Model model){
+        model.addAttribute("page", "about");
+        return "about";
+    }
+
     @GetMapping("/contact")
     public String contact(Model model){
         model.addAttribute("page", "contact");
