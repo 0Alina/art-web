@@ -1,8 +1,6 @@
 package com.application.art.controller;
 
 import org.springframework.ui.Model;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,6 +11,12 @@ public class HomeController {
     public String index(Model model) {
         model.addAttribute("page", "home");
         return "index";
+    }
+
+    @GetMapping("/index1")
+    public String index1(Model model) {
+        model.addAttribute("page", "home");
+        return "index1";
     }
 
     @GetMapping("/blog")
@@ -27,10 +31,10 @@ public class HomeController {
         return "services";
     }
 
-    @GetMapping("/portfolio")
-    public String portfolio(Model model){
-        model.addAttribute("page", "work");
-        return "portfolio";
+    @GetMapping("/gallery")
+    public String gallery(Model model){
+        model.addAttribute("page", "gallery");
+        return "gallery";
     }
 
     @GetMapping("/contact")
