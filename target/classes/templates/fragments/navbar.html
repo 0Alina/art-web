@@ -4,7 +4,11 @@
 <!--/ Nav Star /-->
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav" th:fragment="navbar">
     <div class="container">
+<<<<<<< HEAD
         <a class="navbar-brand js-scroll" href="#page-top">VictorFrimuArt</a>
+=======
+        <a class="navbar-brand js-scroll" href="index">DevFolio</a>
+>>>>>>> d687aecd9701c1f249657625f06cfde1be7c1dc2
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
                 aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span></span>
@@ -23,7 +27,10 @@
                     <a class="nav-link js-scroll" href="gallery" th:classappend="${page == 'gallery'} ? 'active'">Galerie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="blog" th:classappend="${page == 'blog'} ? 'active'">Blog</a>
+                    <a class="nav-link js-scroll" href="news" th:classappend="${page == 'news'} ? 'active'">Noutăți</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="about" th:classappend="${page == 'about'} ? 'active'">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll" href="contact" th:classappend="${page == 'contact'} ? 'active'">Contact</a>

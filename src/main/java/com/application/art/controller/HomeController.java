@@ -19,10 +19,16 @@ public class HomeController {
         return "index1";
     }
 
-    @GetMapping("/blog")
-    public String blogSingle(Model model){
-        model.addAttribute("page", "blog");
-        return "blog";
+    @GetMapping("/news")
+    public String news(Model model){
+        model.addAttribute("page", "news");
+        return "news";
+    }
+
+    @GetMapping("/news-single")
+    public String newsSingle(Model model) {
+        model.addAttribute("page", "news-single");
+        return "news-single";
     }
 
     @GetMapping("/services")
@@ -35,6 +41,12 @@ public class HomeController {
     public String gallery(Model model){
         model.addAttribute("page", "gallery");
         return "gallery";
+    }
+
+    @GetMapping("/about")
+    public String about(Model model){
+        model.addAttribute("page", "about");
+        return "about";
     }
 
     @GetMapping("/contact")
