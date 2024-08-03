@@ -10,27 +10,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/index")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("page", "home");
         return "index";
     }
 
     @GetMapping("/blog")
-    public String blogSingle(){
+    public String blogSingle(Model model){
+        model.addAttribute("page", "blog");
         return "blog";
     }
 
     @GetMapping("/services")
-    public String services(){
+    public String services(Model model){
+        model.addAttribute("page", "service");
         return "services";
     }
 
     @GetMapping("/portfolio")
-    public String portfolio(){
+    public String portfolio(Model model){
+        model.addAttribute("page", "work");
         return "portfolio";
     }
 
     @GetMapping("/contact")
-    public String contact(){
+    public String contact(Model model){
+        model.addAttribute("page", "contact");
         return "contact";
     }
 
