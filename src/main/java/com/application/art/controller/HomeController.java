@@ -13,6 +13,12 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/index1")
+    public String index1(Model model) {
+        model.addAttribute("page", "home");
+        return "index1";
+    }
+
     @GetMapping("/news")
     public String news(Model model){
         model.addAttribute("page", "news");
@@ -31,10 +37,10 @@ public class HomeController {
         return "services";
     }
 
-    @GetMapping("/portfolio")
-    public String portfolio(Model model){
-        model.addAttribute("page", "work");
-        return "portfolio";
+    @GetMapping("/gallery")
+    public String gallery(Model model){
+        model.addAttribute("page", "gallery");
+        return "gallery";
     }
 
     @GetMapping("/about")
