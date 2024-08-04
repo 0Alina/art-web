@@ -1,5 +1,6 @@
 package com.application.art.controller;
 
+import com.application.art.dto.AboutDto;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,7 @@ public class HomeController {
     @GetMapping("/about")
     public String about(Model model){
         model.addAttribute("page", "about");
+        model.addAttribute("aboutDto", new AboutDto());
         return "about";
     }
 
