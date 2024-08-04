@@ -21,7 +21,7 @@ public class AboutController {
 
         aboutService.updateAbout(aboutDto);
 
-        return "index";
+        return "redirect:/index";
     }
 
 }
