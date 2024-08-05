@@ -9,6 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 public class AboutController {
@@ -17,11 +21,19 @@ public class AboutController {
     private AboutServiceImpl aboutService;
 
     @PostMapping("/about/update")
-    public String updateAbout(@ModelAttribute("aboutDto") AboutDto aboutDto, BindingResult result, Model model){
+    public String updateAbout(@ModelAttribute AboutDto aboutDto,
+                              @RequestParam("profileImage") MultipartFile profileImage) {
 
-        aboutService.updateAbout(aboutDto);
+        try {
+            aboutService.updateAbout(aboutDto, profileImage);
+        } catch (IOException e) {
+            // Log the exception and handle it
+            e.printStackTrace();
+            return "error";
+        }
 
         return "redirect:/about";
     }
+
 
 }

@@ -21,4 +21,6 @@ public class AboutDto {
 
     private String description;
 
+    private byte[] profileImage;
+
 }
