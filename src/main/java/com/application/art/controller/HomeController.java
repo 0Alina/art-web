@@ -1,12 +1,16 @@
 package com.application.art.controller;
 
 import com.application.art.dto.AboutDto;
+import com.application.art.dto.GalleryItemDto;
 import com.application.art.service.AboutService;
 import com.application.art.service.AboutServiceImpl;
+import com.application.art.service.GalleryItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -14,16 +18,13 @@ public class HomeController {
     @Autowired
     private AboutServiceImpl aboutService;
 
+    @Autowired
+    private GalleryItemService galleryItemService;
+
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("page", "home");
         return "index";
-    }
-
-    @GetMapping("/index1")
-    public String index1(Model model) {
-        model.addAttribute("page", "home");
-        return "index1";
     }
 
     @GetMapping("/news")
@@ -46,7 +47,8 @@ public class HomeController {
 
     @GetMapping("/gallery")
     public String gallery(Model model){
-        model.addAttribute("page", "gallery");
+        List<GalleryItemDto> galleryItems = galleryItemService.getAllGalleryItems();
+        model.addAttribute("galleryItems", galleryItems);
         return "gallery";
     }
 

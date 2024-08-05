@@ -8,12 +8,32 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GalleryItemServiceImpl implements GalleryItemService {
 
     @Autowired
     private GalleryItemRepository galleryItemRepository;
+
+    @Override
+    public List<GalleryItemDto> getAllGalleryItems() {
+        List<GalleryItem> galleryItems = galleryItemRepository.findAll();
+        return galleryItems.stream()
+                .map((galleryItem) -> mapToGalleryItem(galleryItem))
+                .collect(Collectors.toList());
+    }
+
+    private GalleryItemDto mapToGalleryItem(GalleryItem galleryItem) {
+        GalleryItemDto galleryItemDto = new GalleryItemDto();
+        galleryItemDto.setId(galleryItem.getId());
+        galleryItemDto.setTitle(galleryItem.getTitle());
+        galleryItemDto.setDate(galleryItem.getDate());
+        galleryItemDto.setBase64Image(galleryItem.getBase64Image());
+
+        return galleryItemDto;
+    }
 
     @Override
     public void save(GalleryItemDto galleryItemDto, MultipartFile imageFile) {
