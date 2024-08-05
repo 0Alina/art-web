@@ -1,8 +1,8 @@
 package com.application.art.service;
 
 import com.application.art.dto.GalleryItemDto;
-import com.application.art.entity.GalleryItem;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface GalleryItemService {
-    void save(GalleryItemDto galleryItemDto);
+    void save(GalleryItemDto galleryItemDto, MultipartFile imageFile);
 }

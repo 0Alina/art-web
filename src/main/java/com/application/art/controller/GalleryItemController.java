@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/gallery")
 @Controller
@@ -24,8 +25,8 @@ public class GalleryItemController {
 
     @PostMapping("/saveGalleryItem")
     // GaleryItemDto e tipul de date, galleryItemDto este obiectul (variabila)
-    public String saveGalleryItem(@ModelAttribute("galleryItemDto") GalleryItemDto galleryItemDto) {
-        galleryItemService.save(galleryItemDto);
+    public String saveGalleryItem(@ModelAttribute("galleryItemDto") GalleryItemDto galleryItemDto, @RequestParam("imageFile") MultipartFile imageFile) {
+        galleryItemService.save(galleryItemDto, imageFile);
         return "redirect:/gallery";
     }
 }

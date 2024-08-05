@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Base64;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,4 +25,8 @@ public class GalleryItem {
 
     @Column(name = "date")
     private String date;
+
+    @Lob
+    @Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image;
 }
