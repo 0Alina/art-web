@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Base64;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,4 +32,18 @@ public class About {
 
     @Column(name = "description")
     private String description;
+
+    @Lob
+    @Column(name = "profileImage", columnDefinition = "LONGBLOB")
+    private byte[] profileImage;
+
+    @Transient
+    private String profileImageBase64;
+
+    public String getBase64Image() {
+        if (this.profileImage != null) {
+            return Base64.getEncoder().encodeToString(this.profileImage);
+        }
+        return null;
+    }
 }
