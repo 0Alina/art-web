@@ -6,7 +6,7 @@
     <title>Gallery Item Form</title>
 </head>
 <body>
-<form th:action="@{/gallery/saveGalleryItem}" th:object="${galleryItem}" method="post">
+<form th:action="@{/gallery/saveGalleryItem}" th:object="${galleryItemDto}" method="post">
     <input type="hidden" id="id" name="id">
 
     <label for="title">Title:</label>
