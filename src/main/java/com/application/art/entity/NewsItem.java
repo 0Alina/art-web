@@ -19,6 +19,6 @@ public class NewsItem {
     private String title;
     @Column(name = "content")
     private String content;
-    @Column(name = "data")
-    private String data;
+    @Column(name = "date")
+    private String date;
 }

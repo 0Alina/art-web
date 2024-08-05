@@ -42,11 +42,12 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="about-img">
-                                <img src="/img/work-1.jpg" class="img-fluid rounded b-shadow-a" alt="Profile Image">
+                                <img id="profileImage" src="/img/userImage.png" class="img-fluid rounded b-shadow-a" alt="Profile Image">
+                                <input type="file" id="profileImageInput" name="profileImage" class="form-control d-none" onchange="previewImage(event)">
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <form id="aboutForm" th:action="@{/about/update}" th:object="${aboutDto}" method="post" style="padding-left: 50px;">
+                            <form id="aboutForm" th:action="@{/about/update}" th:object="${aboutDto}" method="post" enctype="multipart/form-data" style="padding-left: 50px;">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" id="name" th:field="*{name}" class="form-control" readonly />
@@ -80,15 +81,26 @@
 
 <script>
     function enableEdit() {
-        // Eliminăm atributul readonly de la toate inputurile
+        // Eliminăm atributul readonly de la toate inputurile și textarea
         document.querySelectorAll('#aboutForm input, #aboutForm textarea').forEach(element => {
             element.removeAttribute('readonly');
         });
+        // Permitem încărcarea unei noi imagini
+        document.getElementById('profileImageInput').classList.remove('d-none');
         // Ascundem butonul Edit și afișăm butonul Save Changes
         document.getElementById('editButton').classList.add('d-none');
         document.getElementById('saveButton').classList.remove('d-none');
     }
+
+    function previewImage(event) {
+        var output = document.getElementById('profileImage');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src); // Free memory
+        }
+    }
 </script>
+
 
 
 <a href="#" class="back-to-top">
