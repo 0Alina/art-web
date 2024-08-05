@@ -680,6 +680,31 @@ a:hover {
   margin-bottom: 2rem;
 }
 
+.about-img img {
+  width: 100%;
+  max-width: 375px; /* Mărirea dimensiunii maxime a imaginii cu 1.5x față de valoarea inițială */
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-control {
+  font-size: 1.1rem; /* Mărirea dimensiunii fontului */
+  padding: 12px;    /* Mărirea paddingului pentru casetele de text */
+}
+
+#aboutForm {
+  padding-left: 50px; /* Spațiere de la marginea stângă pentru a muta casetele spre dreapta */
+}
+
+#aboutForm .form-group {
+  margin-bottom: 20px; /* Ajustarea spațierii între casetele de text */
+}
+
 .about-mf .about-img img {
   margin-left: 10px;
 }
