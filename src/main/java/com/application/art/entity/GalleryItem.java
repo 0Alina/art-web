@@ -26,6 +26,9 @@ public class GalleryItem {
     @Column(name = "date")
     private String date;
 
+    @Column(name = "description")
+    private String description;
+
     @Lob
     @Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image;

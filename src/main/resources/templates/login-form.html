@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>DevFolio Bootstrap Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.10-0/css/ionicons.min.css"
+          integrity="sha384-LtWyPIfSTp8w6zKhgVcq5/jo3BMyZTf/bFdwbLZJRe8tkzZVTrmc3Djs8I3K5Kxj" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet"  th:href="@{/css/style.css}">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container-login-form {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #007BFF, #00c6ff);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #0056b3, #0098ff);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 91, 187, 0.4);
+        }
+
+        .toggle-link {
+            margin-top: 15px;
+            color: #007BFF;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .toggle-link:hover {
+            color: #0056b3;
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<!--/ Nav Start /-->
+<div th:replace="~{/fragments/navbar :: navbar}"></div>
+<!--/ Nav End /-->
+
+<div class="container-login-form">
+    <h2>Login</h2>
+    <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
+    </div>
+    <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+    </div>
+    <button class="btn" onclick="login()">Login</button>
+    <div class="toggle-link" onclick="redirectToRegister()">Don't have an account? Register</div>
+</div>
+
+<script>
+    function login() {
+        alert('Login logic here');
+        // Add login logic here (e.g., form submission)
+    }
+
+    function redirectToRegister() {
+        window.location.href = 'register.html';
+    }
+</script>
+
+</body>
+</html>

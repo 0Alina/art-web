@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GalleryItemDto {
     private Long id;
-    @Size(min = 2, max = 50)
     private String title;
     private String date;
+    private String description;
     private String base64Image;
 }
