@@ -55,8 +55,6 @@
                                 </div>
                                 <div>
                                     <form th:action="@{/contact/save}" th:object="${contactDto}" method="post" role="form" class="contactForm">
-<!--                                        <div id="sendmessage">Your message has been sent. Thank you!</div>-->
-<!--                                        <div id="errormessage"></div>-->
                                         <div class="row">
                                             <div class="col-md-12 mb-3">
                                                 <div class="form-group">
@@ -93,15 +91,19 @@
                         <div class="col-md-6">
                             <div class="title-box-2 pt-4 pt-md-0">
                                 <h5 class="title-left">
-                                    Get in Touch
+                                    About me
                                 </h5>
                             </div>
+
+<!---------------------------Nu va atingeti de nimic aici, lucreaza cum trebuie-------------------------->
+
                             <div class="more-info">
-                                <p class="lead" th:text="${contactDetail.description}"></p>
+                                <p class="lead" th:text="${contactDetail.email}"></p>
                                 <ul class="list-ico">
+                                    <br>
                                     <li><i class="fa fa-map-marker"></i> <span th:text="${contactDetail.address}"></span></li>
                                     <li><i class="fa fa-phone"></i> <span th:text="${contactDetail.phone}"></span></li>
-                                    <li><i class="fa fa-envelope"></i> <span th:text="${contactDetail.email}"></span></li>
+                                    <li><i class="fa fa-envelope"></i> <span th:text="${contactDetail.description}"></span></li>
                                 </ul>
                             </div>
                             <div class="socials">
@@ -123,20 +125,6 @@
             </div>
         </div>
     </div>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="copyright-box">
-                        <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
-                        <div class="credits">
-                            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 </section>
 <!--/ Section Contact-footer End /-->
 

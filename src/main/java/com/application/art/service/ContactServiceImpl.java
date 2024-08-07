@@ -53,4 +53,20 @@ public class ContactServiceImpl implements ContactService {
             return new ContactDetailDto();
     }
 
+    public void editContactInfo(ContactDetailDto contactDetailDto){
+        ContactDetail contactDetail = new ContactDetail();
+
+        contactDetail.setAddress(contactDetailDto.getAddress());
+        contactDetail.setEmail(contactDetailDto.getEmail());
+        contactDetail.setPhone(contactDetailDto.getPhone());
+        contactDetail.setDescription(contactDetailDto.getDescription());
+        contactDetail.setFacebook(contactDetailDto.getFacebook());
+        contactDetail.setInstagram(contactDetailDto.getInstagram());
+        contactDetail.setTwitter(contactDetailDto.getTwitter());
+        contactDetail.setPinterest(contactDetailDto.getPinterest());
+
+        contactDetailRepository.save(contactDetail);
+
+    }
+
 }

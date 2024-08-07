@@ -32,6 +32,7 @@ public class AboutController {
                                 @RequestParam("photo") MultipartFile photo) {
 
         aboutService.updateAbout(aboutDto, photo);
+
         return "redirect:/about";
     }
 
