@@ -30,7 +30,8 @@ public class About {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "about_me")
+    @Lob
+    @Column(name = "about_me", columnDefinition = "LONGBLOB")
     private String about_me;
 
     @Lob
