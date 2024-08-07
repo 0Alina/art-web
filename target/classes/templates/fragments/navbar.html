@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<!--/ Nav Star /-->
+<!--/ Nav Start /-->
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav" th:fragment="navbar">
     <div class="container">
 
@@ -15,22 +15,28 @@
         <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="index" th:classappend="${page == 'home'} ? 'active'">Home</a>
+                    <a class="nav-link js-scroll" th:href="@{/index}" th:classappend="${page == 'home'} ? 'active'">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="services" th:classappend="${page == 'service'} ? 'active'">Services</a>
+                    <a class="nav-link js-scroll" th:href="@{/services}" th:classappend="${page == 'service'} ? 'active'">Services</a>
+                </li>
+                <li class="nav-item">   
+                    <a class="nav-link js-scroll" th:href="@{/gallery}" th:classappend="${page == 'gallery'} ? 'active'">Galerie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="gallery" th:classappend="${page == 'gallery'} ? 'active'">Galerie</a>
+                    <a class="nav-link js-scroll" th:href="@{/news}" th:classappend="${page == 'news'} ? 'active'">Noutăți</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="news" th:classappend="${page == 'news'} ? 'active'">Noutăți</a>
+                    <a class="nav-link js-scroll" th:href="@{/about}" th:classappend="${page == 'about'} ? 'active'">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="about" th:classappend="${page == 'about'} ? 'active'">About</a>
+                    <a class="nav-link js-scroll" th:href="@{/contact}" th:classappend="${page == 'contact'} ? 'active'">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="contact" th:classappend="${page == 'contact'} ? 'active'">Contact</a>
+                    <a class="nav-link js-scroll" th:href="@{/register}" th:classappend="${page == 'register'} ? 'active'">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" th:href="@{/login}" th:classappend="${page == 'login'} ? 'active'">Login</a>
                 </li>
             </ul>
         </div>
