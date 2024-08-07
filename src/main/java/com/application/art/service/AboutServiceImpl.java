@@ -19,19 +19,6 @@ public class AboutServiceImpl {
     @Autowired
     private AboutRepository aboutRepository;
 
-//    public void updateAbout(AboutDto aboutDto) {
-//        About about = new About();
-//
-//        about.setId(1);
-//        about.setName(aboutDto.getName());
-//        about.setSurname(aboutDto.getSurname());
-//        about.setEmail(aboutDto.getEmail());
-//        about.setPhone(aboutDto.getPhone());
-//        about.setDescription(aboutDto.getDescription());
-//
-//        aboutRepository.save(about);
-//    }
-
     public AboutDto getAboutInfo() {
         // Preluăm datele aferente ID-ului 1 din baza de date
         Optional<About> aboutOptional = aboutRepository.findById(1);
@@ -39,37 +26,44 @@ public class AboutServiceImpl {
         // Dacă înregistrarea există, o returnăm ca AboutDto
         if (aboutOptional.isPresent()) {
             About about = aboutOptional.get();
-            return new AboutDto(about.getId(), about.getName(), about.getSurname(), about.getEmail(),
-                    about.getPhone(), about.getDescription(), about.getProfileImage());
+            return new AboutDto(
+                    about.getId(),
+                    about.getFullName(),
+                    about.getProfile(),
+                    about.getEmail(),
+                    about.getPhone(),
+                    about.getAbout_me(),
+                    about.getBase64Image()
+            );
         } else {
-            // Dacă nu există o înregistrare cu ID-ul 1, returnăm un AboutDto gol sau putem trata altfel această situație
             return new AboutDto();
         }
     }
 
-    public void updateAbout(AboutDto aboutDto, MultipartFile profileImage) throws IOException {
+
+    public void updateAbout(AboutDto aboutDto, MultipartFile imageFile) {
+        About about = new About();
+
+        about.setId(1);
+        about.setFullName(aboutDto.getFullName());
+        about.setProfile(aboutDto.getProfile());
+        about.setEmail(aboutDto.getEmail());
+        about.setPhone(aboutDto.getPhone());
+        about.setAbout_me(aboutDto.getAbout_me());
+
         try {
-            About about = aboutRepository.findById(aboutDto.getId())
-                    .orElseThrow(() -> new EntityNotFoundException("About not found with id " + aboutDto.getId()));
-
-            about.setName(aboutDto.getName());
-            about.setSurname(aboutDto.getSurname());
-            about.setEmail(aboutDto.getEmail());
-            about.setPhone(aboutDto.getPhone());
-            about.setDescription(aboutDto.getDescription());
-
-            if (!profileImage.isEmpty()) {
-                byte[] imageBytes = profileImage.getBytes();
-                about.setProfileImage(imageBytes);
+            if (!imageFile.isEmpty()) {
+                about.setImage(imageFile.getBytes());
             }
-
-            aboutRepository.save(about);
-
-        } catch (Exception e) {
-            // Log the exception and rethrow if necessary
+        } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Error updating about information", e);
+            throw new RuntimeException("Failed to upload image", e); // Add more specific error handling if needed
         }
+
+        aboutRepository.save(about);
+
     }
+
+
 
 }

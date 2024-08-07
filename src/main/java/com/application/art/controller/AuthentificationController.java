@@ -8,11 +8,12 @@ public class AuthentificationController {
 
     @GetMapping("/register")
     public String showRegisterForm() {
-        return "registration-form";
+        return "register";
     }
 
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login-form";
+        return "login";
     }
+
 }

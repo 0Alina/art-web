@@ -7,20 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AboutDto {
+public class ContactDto {
 
-    private int id = 1;
+    private int id;
 
     private String fullName;
 
-    private String profile;
-
     private String email;
 
-    private String phone;
+    private String subject;
 
-    private String about_me;
-
-    private String base64Image;
+    private String message;
 
 }

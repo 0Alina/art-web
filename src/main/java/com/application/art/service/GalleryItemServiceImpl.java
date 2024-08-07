@@ -30,7 +30,6 @@ public class GalleryItemServiceImpl implements GalleryItemService {
         galleryItemDto.setId(galleryItem.getId());
         galleryItemDto.setTitle(galleryItem.getTitle());
         galleryItemDto.setDate(galleryItem.getDate());
-        galleryItemDto.setDescription(galleryItem.getDescription());
         galleryItemDto.setBase64Image(galleryItem.getBase64Image());
 
         return galleryItemDto;
@@ -42,7 +41,6 @@ public class GalleryItemServiceImpl implements GalleryItemService {
         GalleryItem galleryItem = new GalleryItem();
         galleryItem.setTitle(galleryItemDto.getTitle());
         galleryItem.setDate(galleryItemDto.getDate());
-        galleryItem.setDescription(galleryItemDto.getDescription());
 
         try {
             if (!imageFile.isEmpty()) {
@@ -50,7 +48,7 @@ public class GalleryItemServiceImpl implements GalleryItemService {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Failed to upload image", e);
+            throw new RuntimeException("Failed to upload image", e); // Add more specific error handling if needed
         }
 
         galleryItemRepository.save(galleryItem);

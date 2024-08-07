@@ -18,11 +18,11 @@ public class About {
     @Column(name = "id")
     private int id = 1;
 
-    @Column(name  = "name")
-    private String name;
+    @Column(name  = "fullName")
+    private String fullName;
 
-    @Column(name = "surname")
-    private String surname;
+    @Column(name = "profile")
+    private String profile;
 
     @Column(name = "email")
     private String email;
@@ -30,20 +30,26 @@ public class About {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "description")
-    private String description;
+    @Lob
+    @Column(name = "about_me", columnDefinition = "LONGBLOB")
+    private String about_me;
 
     @Lob
-    @Column(name = "profileImage", columnDefinition = "LONGBLOB")
-    private byte[] profileImage;
-
-    @Transient
-    private String profileImageBase64;
+    @Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image;
 
     public String getBase64Image() {
-        if (this.profileImage != null) {
-            return Base64.getEncoder().encodeToString(this.profileImage);
+        if (this.image != null) {
+            return Base64.getEncoder().encodeToString(this.image);
         }
         return null;
+    }
+
+    public void setBase64Image(String base64Image) {
+        if (base64Image != null) {
+            this.image = Base64.getDecoder().decode(base64Image);
+        } else {
+            this.image = null;
+        }
     }
 }

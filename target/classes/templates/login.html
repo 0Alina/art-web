@@ -27,7 +27,6 @@
 
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet"  th:href="@{/css/style.css}">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -41,12 +40,12 @@
             margin: 0;
         }
 
-        .containerRegisterForm {
+        .container-login {
             background: rgba(255, 255, 255, 0.85);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 500px;
+            width: 470px;
             text-align: center;
             animation: fadeIn 1s ease-in-out;
         }
@@ -131,36 +130,28 @@
 <div th:replace="~{/fragments/navbar :: navbar}"></div>
 <!--/ Nav End /-->
 
-<div class="containerRegisterForm">
-    <h2>Register</h2>
+<div class="container-login">
+    <h2>Login</h2>
     <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
     </div>
     <div class="form-group">
-        <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required>
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
     </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-    </div>
-    <button class="btn" onclick="register()">Register</button>
-    <div class="toggle-link" onclick="redirectToLogin()">Already have an account? Login</div>
+    <button class="btn" onclick="login()">Login</button>
+    <div class="toggle-link" onclick="redirectToRegister()">Don't have an account? Register</div>
 </div>
 
 <script>
-    function register() {
-        alert('Registration logic here');
-        // Add registration logic here (e.g., form submission)
+    function login() {
+        alert('Login logic here');
+        // Add login logic here (e.g., form submission)
     }
 
-    function redirectToLogin() {
-        window.location.href = 'login.html';
+    function redirectToRegister() {
+        window.location.href = 'register.html';
     }
 </script>
 

@@ -1,6 +1,7 @@
 package com.application.art.controller;
 
 import com.application.art.dto.AboutDto;
+import com.application.art.dto.ContactDto;
 import com.application.art.dto.GalleryItemDto;
 import com.application.art.service.AboutService;
 import com.application.art.service.AboutServiceImpl;
@@ -53,7 +54,8 @@ public class HomeController {
     }
 
     @GetMapping("/about")
-    public String about(Model model){
+    public String about(Model model) {
+
         AboutDto aboutDto = aboutService.getAboutInfo();
 
         model.addAttribute("page", "about");
@@ -61,9 +63,15 @@ public class HomeController {
         return "about";
     }
 
+
     @GetMapping("/contact")
     public String contact(Model model){
+
+        ContactDto contactDto = new ContactDto();
+
+        model.addAttribute("contactDto", contactDto);
         model.addAttribute("page", "contact");
+
         return "contact";
     }
 
