@@ -89,32 +89,32 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="title-box-2 pt-4 pt-md-0">
-                                    <h5 class="title-left">
-                                        Get in Touch
-                                    </h5>
-                                </div>
-                                <div class="more-info">
-                                    <p class="lead">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorum dolorem soluta quidem
-                                        expedita aperiam aliquid at.
-                                        Totam magni ipsum suscipit amet? Autem nemo esse laboriosam ratione nobis
-                                        mollitia inventore?
-                                    </p>
-                                    <ul class="list-ico">
-                                        <li><i class="fa fa-map-marker"></i> 329 WASHINGTON ST BOSTON, MA 02108</li>
-                                        <li><i class="fa fa-phone"></i> (617) 557-0089</li>
-                                        <li><i class="fa fa-envelope"></i> contact@example.com</li>
-                                    </ul>
-                                </div>
-                                <div class="socials">
-                                    <ul>
-                                        <li><a href=""><span class="ico-circle"><i class="fab fa-facebook-f"></i></span></a></li>
-                                        <li><a href=""><span class="ico-circle"><i class="fab fa-instagram"></i></span></a></li>
-                                        <li><a href=""><span class="ico-circle"><i class="fab fa-twitter"></i></span></a></li>
-                                        <li><a href=""><span class="ico-circle"><i class="fab fa-pinterest-p"></i></span></a></li>
-                                    </ul>
+
+                        <div class="col-md-6">
+                            <div class="title-box-2 pt-4 pt-md-0">
+                                <h5 class="title-left">
+                                    Get in Touch
+                                </h5>
+                            </div>
+                            <div class="more-info">
+                                <p class="lead" th:text="${contactDetail.description}"></p>
+                                <ul class="list-ico">
+                                    <li><i class="fa fa-map-marker"></i> <span th:text="${contactDetail.address}"></span></li>
+                                    <li><i class="fa fa-phone"></i> <span th:text="${contactDetail.phone}"></span></li>
+                                    <li><i class="fa fa-envelope"></i> <span th:text="${contactDetail.email}"></span></li>
+                                </ul>
+                            </div>
+                            <div class="socials">
+                                <ul>
+                                    <li><a th:href="${contactDetail.facebook}" target="_blank"><span class="ico-circle"><i class="fab fa-facebook-f"></i></span></a></li>
+                                    <li><a th:href="${contactDetail.instagram}" target="_blank"><span class="ico-circle"><i class="fab fa-instagram"></i></span></a></li>
+                                    <li><a th:href="${contactDetail.twitter}" target="_blank"><span class="ico-circle"><i class="fab fa-twitter"></i></span></a></li>
+                                    <li><a th:href="${contactDetail.pinterest}" target="_blank"><span class="ico-circle"><i class="fab fa-pinterest-p"></i></span></a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="text-center mt-4">
+                                    <a href="contact/edit" class="btn btn-primary">Edit details</a>
                                 </div>
                             </div>
                         </div>

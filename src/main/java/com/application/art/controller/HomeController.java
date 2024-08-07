@@ -1,11 +1,10 @@
 package com.application.art.controller;
 
 import com.application.art.dto.AboutDto;
+import com.application.art.dto.ContactDetailDto;
 import com.application.art.dto.ContactDto;
 import com.application.art.dto.GalleryItemDto;
-import com.application.art.service.AboutService;
-import com.application.art.service.AboutServiceImpl;
-import com.application.art.service.GalleryItemService;
+import com.application.art.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,9 @@ public class HomeController {
 
     @Autowired
     private GalleryItemService galleryItemService;
+
+    @Autowired
+    private ContactServiceImpl contactService;
 
     @GetMapping("/index")
     public String index(Model model) {
@@ -69,6 +71,9 @@ public class HomeController {
 
         ContactDto contactDto = new ContactDto();
 
+        ContactDetailDto contactDetail = contactService.getContactInfo();
+
+        model.addAttribute("contactDetail", contactDetail);
         model.addAttribute("contactDto", contactDto);
         model.addAttribute("page", "contact");
 
