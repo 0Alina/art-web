@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -22,18 +19,19 @@ public class AboutController {
     @Autowired
     private AboutServiceImpl aboutService;
 
+    @GetMapping("/edit")
+    public String editAbout(Model model) {
+
+        model.addAttribute("aboutDto", new AboutDto());
+
+        return "new-about";
+    }
+
     @PostMapping("/update")
     public String updateAbout(@ModelAttribute AboutDto aboutDto,
-                              @RequestParam("profileImage") MultipartFile profileImage) {
+                                @RequestParam("photo") MultipartFile photo) {
 
-        try {
-            aboutService.updateAbout(aboutDto, profileImage);
-        } catch (IOException e) {
-            // Log the exception and handle it
-            e.printStackTrace();
-            return "error";
-        }
-
+        aboutService.updateAbout(aboutDto, photo);
         return "redirect:/about";
     }
 

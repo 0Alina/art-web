@@ -11,16 +11,16 @@ public class AboutDto {
 
     private int id = 1;
 
-    private String name;
+    private String fullName;
 
-    private String surname;
+    private String profile;
 
     private String email;
 
     private String phone;
 
-    private String description;
+    private String about_me;
 
-    private byte[] profileImage;
+    private String base64Image;
 
 }

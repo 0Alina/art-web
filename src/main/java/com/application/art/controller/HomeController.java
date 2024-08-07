@@ -53,13 +53,15 @@ public class HomeController {
     }
 
     @GetMapping("/about")
-    public String about(Model model){
+    public String about(Model model) {
+
         AboutDto aboutDto = aboutService.getAboutInfo();
 
         model.addAttribute("page", "about");
         model.addAttribute("aboutDto", aboutDto);
         return "about";
     }
+
 
     @GetMapping("/contact")
     public String contact(Model model){

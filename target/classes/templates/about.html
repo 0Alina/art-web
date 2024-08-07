@@ -40,37 +40,54 @@
             <div class="col-sm-12">
                 <div class="box-shadow-full">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="about-img">
-                                <img id="profileImage" src="/img/userImage.png" class="img-fluid rounded b-shadow-a" alt="Profile Image">
-                                <input type="file" id="profileImageInput" name="profileImage" class="form-control d-none" onchange="previewImage(event)">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-5">
+                                    <div class="about-img">
+                                        <img th:src="'data:image/jpeg;base64,' + ${aboutDto.base64Image}" alt="" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-7">
+                                    <div class="about-info">
+                                        <p><span class="title-s">Name: </span> <span th:text="${aboutDto.fullName}"></span></p>
+                                        <p><span class="title-s">Profile: </span> <span th:text="${aboutDto.profile}"></span></p>
+                                        <p><span class="title-s">Email: </span> <span th:text="${aboutDto.email}"></span></p>
+                                        <p><span class="title-s">Phone: </span> <span th:text="${aboutDto.phone}"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="about/edit" class="btn btn-primary">Edit details</a>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <form id="aboutForm" th:action="@{/about/update}" th:object="${aboutDto}" method="post" enctype="multipart/form-data" style="padding-left: 50px;">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" th:field="*{name}" class="form-control" readonly />
+                        <div class="skill-mf">
+                            <p class="title-s">Skill</p>
+                            <span>HTML</span> <span class="pull-right">85%</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span>CSS3</span> <span class="pull-right">75%</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span>PHP</span> <span class="pull-right">50%</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span>JAVASCRIPT</span> <span class="pull-right">90%</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-me pt-4 pt-md-0">
+                                <div class="title-box-2">
+                                    <h5 class="title-left">
+                                        About me
+                                    </h5>
                                 </div>
-                                <div class="form-group">
-                                    <label for="surname">Surname</label>
-                                    <input type="text" id="surname" th:field="*{surname}" class="form-control" readonly />
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" th:field="*{email}" class="form-control" readonly />
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" id="phone" th:field="*{phone}" class="form-control" readonly />
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">About Me</label>
-                                    <textarea id="description" th:field="*{description}" class="form-control" rows="6" readonly></textarea>
-                                </div>
-                                <button type="button" class="btn btn-primary" id="editButton" onclick="enableEdit()">Edit</button>
-                                <button type="submit" class="btn btn-success d-none" id="saveButton">Save Changes</button>
-                            </form>
+                                <p class="lead" th:text="${aboutDto.about_me}"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,28 +97,26 @@
 </section>
 
 <script>
-    function enableEdit() {
-        // Eliminăm atributul readonly de la toate inputurile și textarea
-        document.querySelectorAll('#aboutForm input, #aboutForm textarea').forEach(element => {
-            element.removeAttribute('readonly');
-        });
-        // Permitem încărcarea unei noi imagini
-        document.getElementById('profileImageInput').classList.remove('d-none');
-        // Ascundem butonul Edit și afișăm butonul Save Changes
-        document.getElementById('editButton').classList.add('d-none');
-        document.getElementById('saveButton').classList.remove('d-none');
-    }
+    document.getElementById('about_me').addEventListener('input', function() {
+        const textarea = this;
+        const wordLimit = 10; // Numărul de cuvinte după care se introduce un nou rând
 
-    function previewImage(event) {
-        var output = document.getElementById('profileImage');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src); // Free memory
+        // Obține textul curent
+        let text = textarea.value;
+        let words = text.split(/\s+/); // Împarte textul în cuvinte
+
+        if (words.length > wordLimit) {
+            let newText = '';
+            for (let i = 0; i < words.length; i++) {
+                if (i > 0 && i % wordLimit === 0) {
+                    newText += '\n'; // Adaugă un salt de linie
+                }
+                newText += words[i] + ' ';
+            }
+            textarea.value = newText.trim();
         }
-    }
+    });
 </script>
-
-
 
 <a href="#" class="back-to-top">
     <i class="fa fa-arrow-up"></i>
