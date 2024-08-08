@@ -23,6 +23,14 @@ public class NewsItem {
     private String content;
     @Column(name = "date")
     private String date;
+    @Column (name = "category")
+    private String category;
+    @Column (name = "description")
+    private String description;
+    @Column (name = "author")
+    private String author;
+    @Column (name = "time")
+    private String time;
 
     @Lob
     @Column(name = "image", columnDefinition = "LONGBLOB")

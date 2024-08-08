@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery Item Form</title>
+    <title>News Item Form</title>
 </head>
 <body>
-<form th:action="@{/news/saveNewsItem}" th:object="${newsItem}" method="post" enctype="multipart/form-data">
-    <input type="hidden" id="id" name="id">
-
+<form th:action="@{/news/saveNewsItem}" th:object="${newsItemDto}" method="post" enctype="multipart/form-data">
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required><br><br>
+    <input type="text" id="title" th:field="*{title}" required><br><br>
 
     <label for="date">Date:</label>
-    <input type="text" id="date" name="date" required><br><br>
+    <input type="text" id="date" th:field="*{date}" required><br><br>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" th:field="*{category}" required><br><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" th:field="*{description}" required></textarea><br><br>
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" th:field="*{author}" required><br><br>
 
     <label for="photo">Photo:</label>
     <input type="file" id="photo" name="photo" required><br><br>

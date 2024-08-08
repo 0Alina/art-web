@@ -50,101 +50,45 @@
                 </div>
             </div>
         </div>
+        <div class="text-center mt-4">
+            <a href="/news/newNewsItem" class="btn btn-primary">New news</a>
+        </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" th:each="newsItem : ${newsItems}">
                 <div class="card card-blog">
                     <div class="card-img">
-                        <a th:href="@{/news-single}"><img src="/img/post-1.jpg" alt="" class="img-fluid"></a>
+                        <a>
+                            <img th:src="'data:image/jpeg;base64,' + ${newsItem.base64Image}" alt="" class="img-fluid">
+                        </a>
                     </div>
                     <div class="card-body">
                         <div class="card-category-box">
                             <div class="card-category">
-                                <h6 class="category">Travel</h6>
+                                <h6 class="category" th:text="${newsItem.category}">Travel</h6>
                             </div>
                         </div>
-                        <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                        <p class="card-description">
-                            Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                            a pellentesque nec,
-                            egestas non nisi.
+                        <h3 class="card-title">
+                            <a th:href="@{/news-single/{id}(id=${newsItem.id})}" th:text="${newsItem.title}"></a>
+                        </h3>
+                        <p class="card-description" th:text="${newsItem.description}">
                         </p>
                     </div>
                     <div class="card-footer">
                         <div class="post-author">
                             <a href="#">
-                                <img src="/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                                <span class="author">Morgan Freeman</span>
+                                <img th:src="'data:image/jpeg;base64,' + ${newsItem.authorImage}" alt="" class="avatar rounded-circle">
+                                <span class="author" th:text="${newsItem.author}"></span>
                             </a>
                         </div>
                         <div class="post-date">
-                            <span class="ion-ios-clock-outline"></span> 10 min
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-blog">
-                    <div class="card-img">
-                        <a href="blog-single.html"><img src="/img/post-2.jpg" alt="" class="img-fluid"></a>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-category-box">
-                            <div class="card-category">
-                                <h6 class="category">Web Design</h6>
-                            </div>
-                        </div>
-                        <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                        <p class="card-description">
-                            Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                            a pellentesque nec,
-                            egestas non nisi.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="post-author">
-                            <a href="#">
-                                <img src="/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                                <span class="author">Morgan Freeman</span>
-                            </a>
-                        </div>
-                        <div class="post-date">
-                            <span class="ion-ios-clock-outline"></span> 10 min
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-blog">
-                    <div class="card-img">
-                        <a href="blog-single.html"><img src="/img/post-3.jpg" alt="" class="img-fluid"></a>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-category-box">
-                            <div class="card-category">
-                                <h6 class="category">Web Design</h6>
-                            </div>
-                        </div>
-                        <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                        <p class="card-description">
-                            Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                            a pellentesque nec,
-                            egestas non nisi.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="post-author">
-                            <a href="#">
-                                <img src="/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                                <span class="author">Morgan Freeman</span>
-                            </a>
-                        </div>
-                        <div class="post-date">
-                            <span class="ion-ios-clock-outline"></span> 10 min
+                            <span class="ion-ios-clock-outline"></span>
+                            <span th:text="${newsItem.time}"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 <!--/ Section Blog End /-->

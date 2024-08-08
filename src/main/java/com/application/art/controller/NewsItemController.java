@@ -18,12 +18,12 @@ public class NewsItemController {
 
     @GetMapping("/newNewsItem")
     public String newsItem(Model model) {
-        model.addAttribute("newsItem", new NewsItemDto());
+        model.addAttribute("newsItemDto", new NewsItemDto());
         return "new-news-item";
     }
 
     @PostMapping("/saveNewsItem")
-    public String saveNewsItem(@ModelAttribute("newsItem") NewsItemDto newsItemDto, @RequestParam("photo") MultipartFile photo) {
+    public String saveNewsItem(@ModelAttribute("newsItemDto") NewsItemDto newsItemDto, @RequestParam("photo") MultipartFile photo) {
         newsItemService.save(newsItemDto, photo);
         return "redirect:/news";
     }

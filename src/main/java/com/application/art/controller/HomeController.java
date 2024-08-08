@@ -1,9 +1,6 @@
 package com.application.art.controller;
 
-import com.application.art.dto.AboutDto;
-import com.application.art.dto.ContactDetailDto;
-import com.application.art.dto.ContactDto;
-import com.application.art.dto.GalleryItemDto;
+import com.application.art.dto.*;
 import com.application.art.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -17,12 +14,12 @@ public class HomeController {
 
     @Autowired
     private AboutServiceImpl aboutService;
-
     @Autowired
     private GalleryItemService galleryItemService;
-
     @Autowired
     private ContactServiceImpl contactService;
+    @Autowired
+    private NewsItemServiceImpl newsItemServiceImpl;
 
     @GetMapping("/index")
     public String index(Model model) {
@@ -32,7 +29,9 @@ public class HomeController {
 
     @GetMapping("/news")
     public String news(Model model){
+        List<NewsItemDto> newsItems = newsItemServiceImpl.getAllNewsItems();
         model.addAttribute("page", "news");
+        model.addAttribute("newsItems", newsItems);
         return "news";
     }
 
