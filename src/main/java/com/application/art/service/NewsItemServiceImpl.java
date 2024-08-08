@@ -50,6 +50,13 @@ public class NewsItemServiceImpl implements NewsItemService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void delete(Long id) {
+        if(newsItemRepository.existsById(id)) {
+            newsItemRepository.deleteById(id);
+        }
+    }
+
     private NewsItemDto mapToNewsItem(NewsItem newsItem) {
         NewsItemDto newsItemDto = new NewsItemDto();
         newsItemDto.setId(newsItem.getId());

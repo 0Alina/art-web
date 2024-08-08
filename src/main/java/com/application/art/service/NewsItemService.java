@@ -10,4 +10,6 @@ import java.util.List;
 public interface NewsItemService {
     void save(NewsItemDto newsItemDto, MultipartFile imageFile);
     List<NewsItemDto> getAllNewsItems();
+
+    void delete(Long id);
 }

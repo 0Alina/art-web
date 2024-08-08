@@ -3,6 +3,7 @@ package com.application.art.controller;
 
 import com.application.art.dto.NewsItemDto;
 import com.application.art.service.NewsItemService;
+import com.application.art.service.NewsItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ public class NewsItemController {
 
     @Autowired
     private NewsItemService newsItemService;
+    @Autowired
+    private NewsItemServiceImpl newsItemServiceImpl;
 
     @GetMapping("/newNewsItem")
     public String newsItem(Model model) {
@@ -28,5 +31,10 @@ public class NewsItemController {
         return "redirect:/news";
     }
 
+    @DeleteMapping("/deleteNewsItem/{id}")
+    public String deleteNewsItem(@PathVariable("id") Long id) {
+        newsItemService.delete(id);
+        return "redirect:/news";
+    }
 }
 
