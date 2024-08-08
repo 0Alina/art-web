@@ -2,15 +2,12 @@ package com.application.art.controller;
 
 
 import com.application.art.dto.NewsItemDto;
-import com.application.art.entity.NewsItem;
 import com.application.art.service.NewsItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/news")
@@ -20,15 +17,16 @@ public class NewsItemController {
     private NewsItemService newsItemService;
 
     @GetMapping("/newNewsItem")
-    public String newsItemController(Model model) {
+    public String newsItem(Model model) {
         model.addAttribute("newsItem", new NewsItemDto());
         return "new-news-item";
     }
 
     @PostMapping("/saveNewsItem")
-    public String saveNewsItem(@ModelAttribute("newsItem") NewsItemDto newsItemDto) {
-        newsItemService.save(newsItemDto);
+    public String saveNewsItem(@ModelAttribute("newsItem") NewsItemDto newsItemDto, @RequestParam("photo") MultipartFile photo) {
+        newsItemService.save(newsItemDto, photo);
         return "redirect:/news";
     }
+
 }
 

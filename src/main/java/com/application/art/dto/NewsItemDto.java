@@ -13,4 +13,5 @@ public class NewsItemDto {
     private String title;
     private String content;
     private String date;
+    private String base64Image;
 }
