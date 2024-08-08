@@ -4,6 +4,7 @@ import com.application.art.dto.GalleryItemDto;
 import com.application.art.entity.GalleryItem;
 import com.application.art.repository.GalleryItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,13 @@ public class GalleryItemServiceImpl implements GalleryItemService {
         return galleryItems.stream()
                 .map((galleryItem) -> mapToGalleryItem(galleryItem))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void delete(Long id) {
+        if(galleryItemRepository.existsById(id)) {
+            galleryItemRepository.deleteById(id);
+        }
     }
 
     private GalleryItemDto mapToGalleryItem(GalleryItem galleryItem) {

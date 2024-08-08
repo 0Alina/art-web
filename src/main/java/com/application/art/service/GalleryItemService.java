@@ -10,4 +10,6 @@ public interface GalleryItemService {
     void save(GalleryItemDto galleryItemDto, MultipartFile imageFile);
 
     List<GalleryItemDto> getAllGalleryItems();
+
+    void delete(Long id);
 }

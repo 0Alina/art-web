@@ -29,4 +29,11 @@ public class GalleryItemController {
         galleryItemService.save(galleryItemDto, imageFile);
         return "redirect:/gallery";
     }
+
+    @DeleteMapping("/deleteGalleryItem/{id}")
+    public String deleteGalleryItem(@PathVariable Long id) {
+        galleryItemService.delete(id);
+        return "redirect:/gallery";
+    }
+
 }
