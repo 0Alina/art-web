@@ -19,6 +19,7 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ContactDetailRepository contactDetailRepository;
 
+    @Override
     public void newContact(ContactDto contactDto) {
             Contact contact = new Contact();
 
@@ -32,6 +33,7 @@ public class ContactServiceImpl implements ContactService {
 
 
     //Contact Details ------------------------------------------------------------
+    @Override
     public ContactDetailDto getContactInfo(){
 
         Optional<ContactDetail> optionalContactDetail = contactDetailRepository.findById(1);
@@ -53,6 +55,7 @@ public class ContactServiceImpl implements ContactService {
             return new ContactDetailDto();
     }
 
+    @Override
     public void editContactInfo(ContactDetailDto contactDetailDto){
         ContactDetail contactDetail = new ContactDetail();
 

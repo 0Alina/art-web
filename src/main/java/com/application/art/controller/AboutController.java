@@ -17,7 +17,7 @@ import java.io.IOException;
 public class AboutController {
 
     @Autowired
-    private AboutServiceImpl aboutService;
+    private AboutService aboutService;
 
     @GetMapping("/edit")
     public String editAbout(Model model) {

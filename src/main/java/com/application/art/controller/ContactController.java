@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ContactController {
 
     @Autowired
-    private ContactServiceImpl contactService;
+    private ContactService contactService;
 
     @PostMapping("/save")
     public String newContact(@ModelAttribute ContactDto contactDto){

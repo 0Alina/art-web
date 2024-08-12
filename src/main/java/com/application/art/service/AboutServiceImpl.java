@@ -14,11 +14,12 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Service
-public class AboutServiceImpl {
+public class AboutServiceImpl implements AboutService {
 
     @Autowired
     private AboutRepository aboutRepository;
 
+    @Override
     public AboutDto getAboutInfo() {
         // Preluăm datele aferente ID-ului 1 din baza de date
         Optional<About> aboutOptional = aboutRepository.findById(1);
@@ -40,7 +41,7 @@ public class AboutServiceImpl {
         }
     }
 
-
+    @Override
     public void updateAbout(AboutDto aboutDto, MultipartFile imageFile) {
         About about = new About();
 

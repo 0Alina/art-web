@@ -7,6 +7,6 @@ public interface AboutService {
 
     void updateAbout(AboutDto about, MultipartFile profileImage);
 
-    AboutDto getAboutInfo(AboutDto about);
+    AboutDto getAboutInfo();
 
 }
