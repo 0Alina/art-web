@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Setter
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class AppUser {
     private static final long serialVersonUID = 1L;
 
     @Id
@@ -30,6 +31,11 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    private Date createdAt;
+
+    @Column(nullable = false)
+    private String role;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable (

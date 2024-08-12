@@ -134,34 +134,62 @@
     <br>
     <br>
     <h2>Register</h2>
-    <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
+
+    <div th:if="${success}"
+         class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Account Created Successfully!</strong>
+        <a class="ms-2" href="/login">Login</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                aria-label="Close"></button>
     </div>
-    <div class="form-group">
-        <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-    </div>
-    <button class="btn" onclick="register()">Register</button>
-    <div class="toggle-link" onclick="redirectToLogin()">Already have an account? Login</div>
+
+    <form method="POST" action="/register/save" th:object="${registerDto}">
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" name="firstname" th:field="${registerDto.firstName}"
+                       placeholder="Enter your first name" required>
+                <p th:if="${#fields.hasErrors('firstName')}"
+                   th:errorclass="text-danger"
+                   th:errors="${registerDto.firstName}">
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" th:field="${registerDto.lastName}"
+                       placeholder="Enter your last name" required>
+                <p th:if="${#fields.hasErrors('lastName')}"
+                   th:errorclass="text-danger"
+                   th:errors="${registerDto.lastName}">
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" th:field="${registerDto.email}"
+                       placeholder="Enter your email" required>
+                <p th:if="${#fields.hasErrors('email')}"
+                   th:errorclass="text-danger"
+                   th:errors="${registerDto.email}">
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" th:field="${registerDto.password}"
+                       placeholder="Enter your password" required>
+                <p th:if="${#fields.hasErrors('password')}"
+                   th:errorclass="text-danger"
+                   th:errors="${registerDto.password}">
+                </p>
+            </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn">Register</button>
+        </div>
+
+        <div class="toggle-link" onclick="redirectToLogin()">Already have an account? Login</div>
+    </form>
 </div>
-
 <script>
-    function register() {
-        alert('Registration logic here');
-        // Add registration logic here (e.g., form submission)
-    }
-
     function redirectToLogin() {
-        window.location.href = 'login.html';
+        window.location.href = '/login';
     }
 </script>
 
