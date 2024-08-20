@@ -15,6 +15,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 
@@ -40,7 +41,10 @@ public class AccountController {
     }
 
     @PostMapping("/register/save")
-    public String registerSuccess(Model model, @Valid @ModelAttribute("registerDto") RegisterDto registerDto, BindingResult result) {
+    public String registerSuccess(Model model,
+                                  @Valid @ModelAttribute("registerDto") RegisterDto registerDto,
+                                  BindingResult result,
+                                  RedirectAttributes redirectAttributes) {
 
         AppUser appUser = appUserRepository.findByEmail(registerDto.getEmail());
 
@@ -49,17 +53,18 @@ public class AccountController {
         }
 
         if (result.hasErrors()) {
-            model.addAttribute("registerDto", registerDto);
+            // Salvează erorile și datele introduse în sesiune
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDto", result);
+            redirectAttributes.addFlashAttribute("registerDto", registerDto);
             return "register";
         }
 
         try {
-            // create new account
+            // Creează un nou cont
             AppUser newUser = new AppUser();
-
             newUser.setName(registerDto.getFirstName() + " " + registerDto.getLastName());
-            newUser.setEmail (registerDto.getEmail());
-            newUser.setRole ("ROLE_USER");
+            newUser.setEmail(registerDto.getEmail());
+            newUser.setRole("ROLE_USER");
             newUser.setCreatedAt(new Date());
             newUser.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
@@ -68,16 +73,16 @@ public class AccountController {
             model.addAttribute("registerDto", new RegisterDto());
             model.addAttribute("success", true);
 
-        }
-        catch (Exception ex) {
-            result.addError(
-                    new FieldError ("registerDto", "firstName",
-                            ex.getMessage())
-            );
+        } catch (Exception ex) {
+            result.addError(new FieldError("registerDto", "firstName", ex.getMessage()));
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDto", result);
+            redirectAttributes.addFlashAttribute("registerDto", registerDto);
+            return "redirect:/register";
         }
 
         return "redirect:/index";
     }
+
 
     //login-----------------------------------------------
     @GetMapping("/login")
