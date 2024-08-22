@@ -18,10 +18,6 @@ public class RoleDataLoader implements CommandLineRunner {
             roleRepository.save(new Role("ROLE_ADMIN"));
         }
 
-        if (roleRepository.findByName("ROLE_MOD") == null) {
-            roleRepository.save(new Role("ROLE_MOD"));
-        }
-
         if (roleRepository.findByName("ROLE_USER") == null) {
             roleRepository.save(new Role("ROLE_USER"));
         }
