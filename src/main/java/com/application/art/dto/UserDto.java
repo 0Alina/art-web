@@ -14,15 +14,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+
     private Long id;
+
     @NotEmpty(message = "First name must not be empty")
     private String firstName;
+
     @NotEmpty(message = "Last name must not be empty")
     private String lastName;
+
     @NotEmpty(message = "Email must not be empty")
     @Email
     private String email;
+
     @NotEmpty(message = "Password must not be empty")
     private String password;
+
     private List<String> roles;
 }

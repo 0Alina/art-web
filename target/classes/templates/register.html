@@ -125,10 +125,6 @@
 </head>
 <body>
 
-<div th:if="${param.success}">
-    <div class="alert alert-success">You've successfully registered to our app!</div>
-</div>
-
 <!--/ Nav Start /-->
 <div th:replace="~{/fragments/navbar :: navbar}"></div>
 <!--/ Nav End /-->
@@ -177,6 +173,10 @@
         </div>
         <div class="col-md-12">
             <button type="submit" class="btn">Register</button>
+        </div>
+
+        <div th:if="${param.success}">
+            <div class="alert alert-success">You've successfully registered to our app!</div>
         </div>
 
         <div class="toggle-link" onclick="redirectToLogin()">Already have an account? Login</div>

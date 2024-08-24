@@ -130,19 +130,20 @@
 <div th:replace="~{/fragments/navbar :: navbar}"></div>
 <!--/ Nav End /-->
 
-<div class="container-login">
-    <h2>Login</h2>
-    <div class="form-group">
-        <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
+<form method="POST" action="/register/save" th:object="${user}">
+    <div class="container-login">
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" name="email" th:field="*{email}" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+        </div>
+        <button class="btn" onclick="login()">Login</button>
+        <div class="toggle-link" onclick="redirectToRegister()">Don't have an account? Register</div>
     </div>
-    <div class="form-group">
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
-    </div>
-    <button class="btn" onclick="login()">Login</button>
-    <div class="toggle-link" onclick="redirectToRegister()">Don't have an account? Register</div>
-</div>
 
 <script>
     function login() {
