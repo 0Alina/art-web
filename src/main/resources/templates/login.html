@@ -130,12 +130,12 @@
 <div th:replace="~{/fragments/navbar :: navbar}"></div>
 <!--/ Nav End /-->
 
-<form method="POST" action="/register/save" th:object="${user}">
+<form method="POST" action="/login/connect">
     <div class="container-login">
         <h2>Login</h2>
         <div class="form-group">
             <label for="loginEmail">Email</label>
-            <input type="email" id="loginEmail" name="email" th:field="*{email}" placeholder="Enter your email" required>
+            <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
         </div>
         <div class="form-group">
             <label for="loginPassword">Password</label>
@@ -152,7 +152,7 @@
     }
 
     function redirectToRegister() {
-        window.location.href = 'register.html';
+        window.location.href = '/register';
     }
 </script>
 
