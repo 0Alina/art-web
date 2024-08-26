@@ -46,7 +46,7 @@ public class NewsItemServiceImpl implements NewsItemService {
     public List<NewsItemDto> getAllNewsItems() {
         List<NewsItem> newsItems = newsItemRepository.findAll();
         return newsItems.stream()
-                .map((newsItem) -> mapToNewsItem(newsItem))
+                .map(this::mapToNewsItem )
                 .collect(Collectors.toList());
     }
 

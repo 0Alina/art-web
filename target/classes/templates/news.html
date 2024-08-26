@@ -47,11 +47,11 @@
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     </p>
                     <div class="line-mf"></div>
+                    <div class="text-center mt-4">
+                        <a href="/news/newNewsItem" class="btn btn-primary">New news</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center mt-4">
-            <a href="/news/newNewsItem" class="btn btn-primary">New news</a>
         </div>
         <div class="row">
             <div class="col-md-4" th:each="newsItem : ${newsItems}">
@@ -85,13 +85,13 @@
                             <span th:text="${newsItem.time}"></span>
                         </div>
                     </div>
+                    <form th:action="@{/news/deleteNewsItem/{id}(id=${newsItem.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this tour?');">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded inline-flex items-center justify-center hover:bg-red-600 transition duration-300" style="border-radius: 8px;">
+                            <i class="bi bi-trash mr-2"></i>Delete
+                        </button>
+                    </form>
                 </div>
-                <form th:action="@{/news/deleteNewsItem/{id}(id=${newsItem.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this tour?');">
-                    <input type="hidden" name="_method" value="delete" />
-                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded inline-flex items-center justify-center hover:bg-red-600 transition duration-300" style="border-radius: 8px;">
-                        <i class="bi bi-trash mr-2"></i>Delete
-                    </button>
-                </form>
             </div>
         </div>
 

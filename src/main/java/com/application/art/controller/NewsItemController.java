@@ -18,12 +18,19 @@ public class NewsItemController {
     private NewsItemService newsItemService;
     @Autowired
     private NewsItemServiceImpl newsItemServiceImpl;
+/*
+    @GetMapping("/newNewsItem")
+    public String newsItem(Model model) {
+        model.addAttribute("newsItemDto", new NewsItemDto());
+        return "new-news-item";
+    }*/
 
     @GetMapping("/newNewsItem")
     public String newsItem(Model model) {
         model.addAttribute("newsItemDto", new NewsItemDto());
         return "new-news-item";
     }
+
 
     @PostMapping("/saveNewsItem")
     public String saveNewsItem(@ModelAttribute("newsItemDto") NewsItemDto newsItemDto, @RequestParam("photo") MultipartFile photo) {
