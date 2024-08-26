@@ -38,7 +38,7 @@ public class UserController {
         }
         if (result.hasErrors()) {
             model.addAttribute("user", userDto);
-            return "register";
+            return "redirect:/register?error";
         }
         userService.saveUser(userDto);
         return "redirect:/register?success";
