@@ -23,21 +23,24 @@ public class SecurityConfig {
     private UserDetailsService userDetailsService;
 
     @Bean
+    public static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize
                                 .requestMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/lib/**", "/contactform/**").permitAll()
                                 .requestMatchers("/index", "/blog/**").permitAll()
-                                .requestMatchers("/register", "/login", "/about", "contact").permitAll()
+                                .requestMatchers("/register/**", "/login/**", "/about", "contact").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
-                                //.requestMatchers("/login").permitAll().anyRequest()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
-                                .loginProcessingUrl("/login/verification")
-                                .defaultSuccessUrl("/index", true)
-                                .failureUrl("/login?error=true")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/index")
                                 .permitAll()
                 ).logout(
                         logout -> logout
@@ -45,11 +48,6 @@ public class SecurityConfig {
                                 .permitAll()
                 );
         return http.build();
-    }
-
-    @Bean
-    public static BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Autowired

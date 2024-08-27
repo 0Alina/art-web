@@ -130,20 +130,35 @@
 <div th:replace="~{/fragments/navbar :: navbar}"></div>
 <!--/ Nav End /-->
 
-<form method="POST" action="/login/verification" th:object="${user}">
+<form method="post" th:action="@{/login}" class="form-horizontal" role="form">
     <div class="container-login">
         <h2>Login</h2>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" th:field="*{email}" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" th:field="*{password}" placeholder="Enter your password" required>
-        </div>
 
         <div th:if="${param.error}">
-            <div class="alert alert-danger">Email-ul sau parola incorecta</div>
+            <div class="alert alert-danger">Invalid Email and Password.</div>
+        </div>
+        <div th:if="${param.logout}">
+            <div class="alert alert-success">You have been logged out.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Email *</label>
+            <input type="text"
+                   id="username"
+                   name="username"
+                   class="form-control"
+                   placeholder="Email"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password *</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   class="form-control"
+                   placeholder="Password"
+            />
         </div>
 
         <button class="btn" type="submit">Login</button>
@@ -151,12 +166,8 @@
         <div class="toggle-link" onclick="redirectToRegister()">Don't have an account? Register</div>
     </div>
 </form>
-<script>
-    function login() {
-        alert('Login logic here');
-        // Add login logic here (e.g., form submission)
-    }
 
+<script>
     function redirectToRegister() {
         window.location.href = '/register';
     }
