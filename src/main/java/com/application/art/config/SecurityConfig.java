@@ -29,7 +29,7 @@ public class SecurityConfig {
                         authorize
                                 .requestMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/lib/**", "/contactform/**").permitAll()
                                 .requestMatchers("/index", "/blog/**").permitAll()
-                                .requestMatchers("/register/**", "/login/**", "/about", "contact", "/**").permitAll()
+                                .requestMatchers("/register", "/login", "/about", "contact").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
                                 //.requestMatchers("/login").permitAll().anyRequest()
                 ).formLogin(

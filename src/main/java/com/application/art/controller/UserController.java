@@ -6,6 +6,7 @@ import com.application.art.entity.User;
 import com.application.art.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         UserDto userDto = new UserDto();
@@ -32,7 +36,8 @@ public class UserController {
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model) {
-        User existingUser = userService.findUserByEmail(userDto.getEmail());
+        User existingUser = userService.findByEmail(userDto.getEmail());
+
         if (existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
@@ -44,15 +49,32 @@ public class UserController {
         return "redirect:/register?success";
     }
 
-//    @GetMapping("/users")
+    @GetMapping("/login")
+    public String login(Model model) {
+        UserDto userDto = new UserDto();
+        model.addAttribute("user", userDto);
+        return "login";
+    }
+
+    @PostMapping("/login/verification")
+    public String loginVerification(@Valid @ModelAttribute("user") UserDto userDto){
+
+        User existingUser = userService.findByEmail(userDto.getEmail());
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        if (existingUser != null && passwordEncoder.matches(userDto.getPassword(), existingUser.getPassword())) {
+            return "redirect:/index";
+        } else {
+            return "redirect:/login?error";
+        }
+    }
+
+    //    @GetMapping("/users")
 //    public String users(Model model) {
 //        List<UserDto> users = userService.findAllUsers();
 //        model.addAttribute("users", users);
 //        return "users";
 //    }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
 }
