@@ -33,18 +33,21 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize
                                 .requestMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/lib/**", "/contactform/**").permitAll()
-                                .requestMatchers("/index", "/blog/**").permitAll()
-                                .requestMatchers("/register/**", "/login/**", "/about", "contact").permitAll()
+                                .requestMatchers("/index").permitAll()
+                                .requestMatchers("/register/**", "/login/**", "/about/**", "/contact/**","/blog/**", "/gallery/**", "/test").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/index")
+                                .defaultSuccessUrl("/login")
                                 .permitAll()
                 ).logout(
                         logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutUrl("/logout")
+                                .invalidateHttpSession(true)  // Închide sesiunea curentă
+                                .deleteCookies("JSESSIONID")  // Șterge cookie-ul sesiunii
+                                .logoutSuccessUrl("/login?logout=true")
                                 .permitAll()
                 );
         return http.build();
