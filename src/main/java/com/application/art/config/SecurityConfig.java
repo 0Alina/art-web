@@ -33,8 +33,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize
                                 .requestMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/lib/**", "/contactform/**").permitAll()
-                                .requestMatchers("/index").permitAll()
-                                .requestMatchers("/register/**", "/login/**", "/about/**", "/contact/**","/blog/**", "/gallery/**", "/test").permitAll()
+                                .requestMatchers("/index", "/error").permitAll()
+                                .requestMatchers("/register/**", "/login/**", "/about/**", "/contact/**","/blog/**",
+                                        "/gallery/**", "/services/**", "/news/**", "/test").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
