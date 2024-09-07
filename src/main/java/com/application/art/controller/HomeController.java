@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    //verificare git
+    //verificare git bla bla
     @Autowired
     private AboutServiceImpl aboutService;
     @Autowired
