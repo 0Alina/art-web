@@ -6,6 +6,9 @@ import com.application.art.entity.User;
 import com.application.art.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -50,23 +54,18 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
+    public String login(){
         return "login";
     }
 
-    @PostMapping("/login/verification")
-    public String loginVerification(@Valid @ModelAttribute("user") UserDto userDto){
-
-        User existingUser = userService.findByEmail(userDto.getEmail());
-
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        if (existingUser != null && passwordEncoder.matches(userDto.getPassword(), existingUser.getPassword())) {
-            return "redirect:/index";
+    @GetMapping("/verif")
+    @ResponseBody
+    public String checkAuth() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
+            return "User is authenticated: " + authentication.getName();
         } else {
-            return "redirect:/login?error";
+            return "User is not authenticated";
         }
     }
 

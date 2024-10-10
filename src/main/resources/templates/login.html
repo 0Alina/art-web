@@ -141,10 +141,6 @@
 <div th:replace="~{/fragments/navbar :: navbar}"></div>
 <!--/ Nav End /-->
 
-<div class="header-info" sec:authorize="isAuthenticated()">
-    <h2>Logged in as: <span sec:authentication="name"></span></h2>
-</div>
-
 <form method="post" th:action="@{/login}" class="form-horizontal" role="form">
     <div class="container-login">
         <h2>Login</h2>
