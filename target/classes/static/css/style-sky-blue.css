@@ -595,7 +595,6 @@ a:hover {
   transform: rotate(-135deg);
   opacity: 0.9;
 }
-
 /*======================================
 //--//-->   INTRO
 ======================================*/
@@ -620,6 +619,7 @@ a:hover {
   height: 100%;
   width: 100%;
   opacity: .9;
+
 }
 
 .intro .intro-title {
