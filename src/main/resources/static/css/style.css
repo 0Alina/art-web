@@ -102,7 +102,21 @@ a:hover {
   width: 100%;
   opacity: .7;
 }
-
+.intro.route::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/frim1.png');
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(40, 20, 10, 0.2); /* Tentă caldă */
+  filter: brightness(80%) contrast(120%) sepia(30%) saturate(140%);
+  box-shadow: inset 0px 0px 120px rgba(50, 30, 10, 0.6);
+  z-index: -1;
+}
 .paralax-mf {
   position: relative;
   padding: 8rem 0;
