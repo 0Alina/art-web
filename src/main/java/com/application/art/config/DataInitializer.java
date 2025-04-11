@@ -35,11 +35,11 @@ public class DataInitializer {
         this.galleryItemRepository = galleryItemRepository;
     }
 
-    @PostConstruct
-    public  void init(){
-        addAbout();
-        addGallery();
-    }
+//    @PostConstruct
+//    public  void init(){
+//        addAbout();
+//        addGallery();
+//    }
 
     private void addAbout(){
 
