@@ -25,8 +25,9 @@ public class GalleryItem {
     @Column(name = "date")
     private String date;
 
+    // Folosim BYTEA pentru a stoca imagini în PostgreSQL și LONGBLOB în MySQL, fără a specifica columnDefinition
     @Lob
-    @Column(name = "image", columnDefinition = "LONGBLOB")
+    @Column(name = "image")
     private byte[] image;
 
     public String getBase64Image() {

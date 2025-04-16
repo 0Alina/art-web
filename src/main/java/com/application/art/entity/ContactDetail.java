@@ -16,7 +16,7 @@ public class ContactDetail {
     private int id = 1;
 
     @Lob
-    @Column(name = "description", columnDefinition = "LONGBLOB")
+    @Column(name = "description")
     private String description;
 
     @Column(name = "address")

@@ -29,12 +29,14 @@ public class About {
     @Column(name = "phone")
     private String phone;
 
+    // Folosim TEXT pentru a stoca un text mai lung (pentru MySQL și PostgreSQL)
     @Lob
-    @Column(name = "about_me", columnDefinition = "LONGBLOB")
+    @Column(name = "about_me")
     private String about_me;
 
+    // Folosim BYTEA pentru a stoca imagini în PostgreSQL și MySQL
     @Lob
-    @Column(name = "image", columnDefinition = "LONGBLOB")
+    @Column(name = "image")
     private byte[] image;
 
     public String getBase64Image() {

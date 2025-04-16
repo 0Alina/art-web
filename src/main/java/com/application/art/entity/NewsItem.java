@@ -32,7 +32,7 @@ public class NewsItem {
     private String time;
 
     @Lob
-    @Column(name = "image", columnDefinition = "LONGBLOB")
+    @Column(name = "image")
     private byte[] image;
 
     public String getBase64Image() {
