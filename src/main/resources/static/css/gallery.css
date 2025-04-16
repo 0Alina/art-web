@@ -188,9 +188,9 @@ body.edit-mode .delete-button {
 }
 
 .title-box { text-align: center; margin-bottom: 50px; }
-.title-a { font-size: 32px; color: #333; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-.subtitle-a { color: #666; font-size: 18px; margin-bottom: 20px; font-style: italic; }
-.line-mf { width: 80px; height: 4px; background-color: #007bff; margin: 0 auto 30px auto; border-radius: 2px; }
+.title-a { font-size: 3rem; color: #333; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.subtitle-a { color: #666;}
+.line-mf { width: 40px; height: 5px; background-color: #007bff; margin: 0 auto; }
 
 .section-counter { padding: 70px 0; }
 .paralax-mf { position: relative; padding: 8rem 0; background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; }
@@ -210,4 +210,4 @@ body.edit-mode .delete-button {
 #preloader { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; overflow: hidden; background: #fff; }
 #preloader:before { content: ""; position: fixed; top: calc(50% - 30px); left: calc(50% - 30px); border: 6px solid #f2f2f2; border-top: 6px solid #007bff; border-radius: 50%; width: 60px; height: 60px; -webkit-animation: animate-preloader 1s linear infinite; animation: animate-preloader 1s linear infinite; }
 @-webkit-keyframes animate-preloader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes animate-preloader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } 
+@keyframes animate-preloader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
