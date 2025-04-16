@@ -35,7 +35,7 @@ public class SecurityConfig {
                                 .requestMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/lib/**", "/contactform/**").permitAll()
                                 .requestMatchers("/index", "/error").permitAll()
                                 .requestMatchers("/register/**", "/login/**", "/about/**", "/contact/**","/blog/**",
-                                        "/gallery/**", "/services/**", "/news/**", "/test", "/verif").permitAll()
+                                        "/gallery/**", "/services/**", "/news/**", "/test", "/verif", "/").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
