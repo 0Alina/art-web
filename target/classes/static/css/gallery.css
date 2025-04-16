@@ -192,22 +192,22 @@ body.edit-mode .delete-button {
 .subtitle-a { color: #666;}
 .line-mf { width: 40px; height: 5px; background-color: #007bff; margin: 0 auto; }
 
-/*.section-counter { padding: 70px 0; }*/
-/*.paralax-mf { position: relative; padding: 8rem 0; background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; }*/
-/*.bg-image { background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-position: center center; }*/
-/*.overlay-mf { position: absolute; top: 0; left: 0px; padding: 0; height: 100%; width: 100%; opacity: .7; background-color: #007bff; }*/
-/*.counter-box { color: #fff; text-align: center; margin-bottom: 1.8rem; }*/
-/*.counter-ico { margin-bottom: 1rem; }*/
-/*.counter-ico .ico-circle { height: 60px; width: 60px; line-height: 1.8; box-shadow: 0 0 0 10px #cde1f8; border-radius: 50%; display: inline-block; background-color: #fff; color: #007bff; font-size: 2rem; }*/
-/*.counter-num .counter { font-size: 2.5rem; margin-bottom: 0; font-weight: bold; }*/
-/*.counter-num .counter-text { font-size: 1rem; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; }*/
-/*@media (max-width: 576px) { .counter-box { margin-bottom: 2rem; } }*/
+.section-counter { padding: 70px 0; }
+.paralax-mf { position: relative; padding: 8rem 0; background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; }
+.bg-image { background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-position: center center; }
+.overlay-mf { position: absolute; top: 0; left: 0px; padding: 0; height: 100%; width: 100%; opacity: .7; background-color: #007bff; }
+.counter-box { color: #fff; text-align: center; margin-bottom: 1.8rem; }
+.counter-ico { margin-bottom: 1rem; }
+.counter-ico .ico-circle { height: 60px; width: 60px; line-height: 1.8; box-shadow: 0 0 0 10px #cde1f8; border-radius: 50%; display: inline-block; background-color: #fff; color: #007bff; font-size: 2rem; }
+.counter-num .counter { font-size: 2.5rem; margin-bottom: 0; font-weight: bold; }
+.counter-num .counter-text { font-size: 1rem; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; }
+@media (max-width: 576px) { .counter-box { margin-bottom: 2rem; } }
 
 .back-to-top { position: fixed; display: none; background: #007bff; color: #fff; width: 44px; height: 44px; text-align: center; line-height: 1; font-size: 22px; border-radius: 50%; right: 15px; bottom: 15px; transition: background 0.5s; z-index: 1100; }
 .back-to-top i { padding-top: 10px; }
 .back-to-top:hover { background: #0056b3; color: #fff; }
 
-/*#preloader { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; overflow: hidden; background: #fff; }*/
-/*#preloader:before { content: ""; position: fixed; top: calc(50% - 30px); left: calc(50% - 30px); border: 6px solid #f2f2f2; border-top: 6px solid #007bff; border-radius: 50%; width: 60px; height: 60px; -webkit-animation: animate-preloader 1s linear infinite; animation: animate-preloader 1s linear infinite; }*/
-/*@-webkit-keyframes animate-preloader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }*/
-/*@keyframes animate-preloader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }*/ 
+#preloader { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; overflow: hidden; background: #fff; }
+#preloader:before { content: ""; position: fixed; top: calc(50% - 30px); left: calc(50% - 30px); border: 6px solid #f2f2f2; border-top: 6px solid #007bff; border-radius: 50%; width: 60px; height: 60px; -webkit-animation: animate-preloader 1s linear infinite; animation: animate-preloader 1s linear infinite; }
+@-webkit-keyframes animate-preloader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes animate-preloader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
