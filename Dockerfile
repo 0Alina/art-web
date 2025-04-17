@@ -20,5 +20,6 @@ COPY --from=build /app/target/*.jar app.jar
 # Expunem portul (Thymeleaf implicit pe 8080)
 EXPOSE 8080
 
+
 # Comanda de start
 ENTRYPOINT ["java", "-jar", "app.jar"]
