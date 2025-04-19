@@ -28,6 +28,11 @@ public class GalleryItemServiceImpl implements GalleryItemService {
                 .collect(Collectors.toList());
     }
 
+    public List<GalleryItemDto> getRecentGalleryItems(int count) {
+        return getAllGalleryItems().stream()
+                .limit(count)
+                .toList();
+    }
 
     @Override
     public void delete(Long id) {

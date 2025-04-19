@@ -1,6 +1,8 @@
 package com.application.art.controller;
 
 import com.application.art.dto.*;
+import com.application.art.entity.GalleryItem;
+import com.application.art.repository.GalleryItemRepository;
 import com.application.art.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -21,9 +23,13 @@ public class HomeController {
     private ContactServiceImpl contactService;
     @Autowired
     private NewsItemServiceImpl newsItemServiceImpl;
+    @Autowired
+    private GalleryItemRepository galleryItemRepository;
 
     @GetMapping("/index")
     public String index(Model model) {
+        List<GalleryItemDto> recentItems = galleryItemService.getRecentGalleryItems(6);
+        model.addAttribute("recentItems", recentItems);
         model.addAttribute("page", "home");
         return "index";
     }

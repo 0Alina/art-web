@@ -22,6 +22,7 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+  <link href="/css/gallery.css" rel="stylesheet" th:href="@{/css/gallery.css}">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet"  th:href="@{/css/style.css}">
 
@@ -48,6 +49,53 @@
 </div>
 <!--/ Intro Skew End /-->
 
+<section id="recent-gallery" class="portfolio-mf sect-pt4 route">
+  <div class="container">
+    <div class="title-box text-center">
+      <h3 class="title-a">Lucrări recente</h3>
+      <p class="subtitle-a">Cele mai noi lucrări adăugate în galerie</p>
+      <div class="line-mf"></div>
+    </div>
+
+    <div class="gallery-wrapper">
+      <div class="gallery-row">
+        <div class="grid-item" th:each="item : ${recentItems}">
+          <div class="work-box">
+            <a th:href="'data:image/jpeg;base64,' + ${item.base64Image}" data-lightbox="recent-gallery" th:attr="data-title=${item.title}">
+              <div class="work-img">
+                <img th:src="'data:image/jpeg;base64,' + ${item.base64Image}" alt="Lucrare" class="img-fluid">
+              </div>
+            </a>
+            <div class="work-content">
+              <div class="row">
+                <div class="col-sm-8">
+                  <h2 class="w-title" th:text="${item.title}">Titlu</h2>
+                  <div class="w-more">
+                    <span class="w-ctegory" th:text="${item.title}"></span>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="w-like">
+                    <span><i class="fas fa-heart"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-fade"></div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a th:href="@{/gallery}" class="btn btn-primary">Vezi toată galeria</a>
+    </div>
+  </div>
+</section>
+
+
+
+
 <!--<div th:replace="~{about :: #about}"></div>-->
 
 <a href="#" class="back-to-top">
@@ -73,5 +121,107 @@
   <!-- Template Main Javascript File -->
   <script src="/js/main.js"></script>
 
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const editModeButton = document.getElementById('editModeButton');
+    const pageBody = document.body;
+    const confirmationDialog = document.getElementById('confirmationDialog');
+    const confirmDeleteButton = document.getElementById('confirmDelete');
+    const cancelDeleteButton = document.getElementById('cancelDelete');
+    let formToDelete = null;
+    let msnry = null;
+
+    // Asigură că butonul Edit este în starea corectă la încărcarea paginii
+    if (editModeButton) {
+      editModeButton.classList.remove('active');
+      pageBody.classList.remove('edit-mode');
+      editModeButton.textContent = 'Edit';
+    }
+
+    if (editModeButton) {
+      editModeButton.addEventListener('click', function() {
+        pageBody.classList.toggle('edit-mode');
+        this.classList.toggle('active');
+        this.textContent = this.classList.contains('active') ? 'Ieși din Mod Editare' : 'Edit';
+        if (msnry) {
+          setTimeout(() => { msnry.layout(); }, 100);
+        }
+      });
+    }
+
+    const galleryGrid = document.querySelector('.gallery-row');
+    if (galleryGrid) {
+      galleryGrid.addEventListener('click', function(event) {
+        const deleteButton = event.target.closest('.delete-button');
+        if (deleteButton && pageBody.classList.contains('edit-mode')) {
+          event.preventDefault();
+          formToDelete = deleteButton.closest('form.delete-form');
+          if (formToDelete && confirmationDialog) {
+            confirmationDialog.style.display = 'flex';
+          }
+        }
+      });
+
+      msnry = new Masonry( galleryGrid, {
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-item',
+        gutter: 20,
+        percentPosition: true,
+        transitionDuration: '0.3s' // Adaugă o tranziție lină la rearanjare
+      });
+
+      imagesLoaded( galleryGrid ).on( 'progress', function() {
+        msnry.layout();
+      });
+    }
+
+    if (confirmDeleteButton) {
+      confirmDeleteButton.addEventListener('click', function() {
+        if (formToDelete) {
+          const itemToRemove = formToDelete.closest('.grid-item'); // Găsește elementul de eliminat
+          formToDelete.submit(); // Trimite cererea de ștergere
+
+          // Elimină elementul vizual și rearanjează layout-ul Masonry (opțional, după confirmare server)
+          if (itemToRemove && msnry) {
+            // Poți aștepta răspuns AJAX sau poți elimina optimist
+            // msnry.remove(itemToRemove);
+            // msnry.layout();
+            // Sau reîncarcă pagina/componenta după submit
+          }
+        }
+        if (confirmationDialog) { confirmationDialog.style.display = 'none'; }
+        formToDelete = null;
+      });
+    }
+
+    if (cancelDeleteButton) {
+      cancelDeleteButton.addEventListener('click', function() {
+        if (confirmationDialog) { confirmationDialog.style.display = 'none'; }
+        formToDelete = null;
+      });
+    }
+
+    if (confirmationDialog) {
+      confirmationDialog.addEventListener('click', function(event) {
+        if (event.target === confirmationDialog) {
+          confirmationDialog.style.display = 'none';
+          formToDelete = null;
+        }
+      });
+    }
+
+    if (typeof $ !== 'undefined' && typeof $.fn.counterUp !== 'undefined') {
+      $('.counter').counterUp({ delay: 10, time: 1000 });
+    }
+
+    if (typeof lightbox !== 'undefined') {
+      lightbox.option({ 'resizeDuration': 200, 'wrapAround': true });
+    }
+
+  });
+</script>
 </body>
 </html>
