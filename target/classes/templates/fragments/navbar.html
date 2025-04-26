@@ -3,25 +3,26 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Bootstrap CSS File -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Libraries CSS Files -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Main Stylesheet File -->
-    <link href="css/style.css" rel="stylesheet"  th:href="@{/css/style.css}">
+    <link href="/css/style.css" rel="stylesheet"  th:href="@{/css/style.css}">
 </head>
 <body>
 <!--/ Nav Start /-->
+
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav" th:fragment="navbar">
     <div class="container">
 
@@ -34,23 +35,23 @@
         </button>
         <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" th:href="@{/index}" th:classappend="${page == 'home'} ? 'active'">Home</a>
+                <li class="nav-item" th:classappend="${page == 'home'} ? 'active'">
+                    <a class="nav-link js-scroll" th:href="@{/index}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" th:href="@{/services}" th:classappend="${page == 'service'} ? 'active'">Services</a>
+                <li class="nav-item" th:classappend="${page == 'service'} ? 'active'">
+                    <a class="nav-link js-scroll" th:href="@{/services}">Services</a>
                 </li>
-                <li class="nav-item">   
-                    <a class="nav-link js-scroll" th:href="@{/gallery}" th:classappend="${page == 'gallery'} ? 'active'">Galerie</a>
+                <li class="nav-item" th:classappend="${page == 'gallery'} ? 'active'">
+                    <a class="nav-link js-scroll" th:href="@{/gallery}">Galerie</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" th:href="@{/news}" th:classappend="${page == 'news'} ? 'active'">Noutăți</a>
+                <li class="nav-item" th:classappend="${page == 'news'} ? 'active'">
+                    <a class="nav-link js-scroll" th:href="@{/news}">Noutăți</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" th:href="@{/about}" th:classappend="${page == 'about'} ? 'active'">About</a>
+                <li class="nav-item" th:classappend="${page == 'about'} ? 'active'">
+                    <a class="nav-link js-scroll" th:href="@{/about}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" th:href="@{/contact}" th:classappend="${page == 'contact'} ? 'active'">Contact</a>
+                <li class="nav-item" th:classappend="${page == 'contact'} ? 'active'">
+                    <a class="nav-link js-scroll" th:href="@{/contact}">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
@@ -67,6 +68,7 @@
         </div>
     </div>
 </nav>
+
 <!--/ Nav End /-->
 </body>
 </html>

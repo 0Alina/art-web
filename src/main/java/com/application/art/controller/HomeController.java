@@ -34,20 +34,6 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/news")
-    public String news(Model model){
-        List<NewsItemDto> newsItems = newsItemServiceImpl.getAllNewsItems();
-        model.addAttribute("page", "news");
-        model.addAttribute("newsItems", newsItems);
-        return "news";
-    }
-
-    @GetMapping("/news-single")
-    public String newsSingle(Model model) {
-        model.addAttribute("page", "news-single");
-        return "news-single";
-    }
-
     @GetMapping("/services")
     public String services(Model model){
         model.addAttribute("page", "service");
@@ -58,7 +44,23 @@ public class HomeController {
     public String gallery(Model model){
         List<GalleryItemDto> galleryItems = galleryItemService.getAllGalleryItems();
         model.addAttribute("galleryItems", galleryItems);
+        model.addAttribute("page", "gallery");
         return "gallery";
+    }
+
+    @GetMapping("/news")
+    public String news(Model model) {
+        List<NewsItemDto> newsItems = newsItemServiceImpl.getAllNewsItems();
+        model.addAttribute("newsItems", newsItems);
+        model.addAttribute("page", "news");
+        return "news";
+    }
+
+
+    @GetMapping("/news-single")
+    public String newsSingle(Model model) {
+        model.addAttribute("page", "news-single");
+        return "news-single";
     }
 
     @GetMapping("/about")
@@ -66,8 +68,8 @@ public class HomeController {
 
         AboutDto aboutDto = aboutService.getAboutInfo();
 
-        model.addAttribute("page", "about");
         model.addAttribute("aboutDto", aboutDto);
+        model.addAttribute("page", "about");
         return "about";
     }
 
