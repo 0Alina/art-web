@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,9 +22,16 @@ public class GalleryItemServiceImpl implements GalleryItemService {
     @Override
     public List<GalleryItemDto> getAllGalleryItems() {
         List<GalleryItem> galleryItems = galleryItemRepository.findAll();
+        Collections.reverse(galleryItems); // inversare locală
         return galleryItems.stream()
-                .map((galleryItem) -> mapToGalleryItem(galleryItem))
+                .map(this::mapToGalleryItem)
                 .collect(Collectors.toList());
+    }
+
+    public List<GalleryItemDto> getRecentGalleryItems(int count) {
+        return getAllGalleryItems().stream()
+                .limit(count)
+                .toList();
     }
 
     @Override

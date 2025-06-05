@@ -1,6 +1,8 @@
 package com.application.art.controller;
 
 import com.application.art.dto.*;
+import com.application.art.entity.GalleryItem;
+import com.application.art.repository.GalleryItemRepository;
 import com.application.art.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -21,25 +23,15 @@ public class HomeController {
     private ContactServiceImpl contactService;
     @Autowired
     private NewsItemServiceImpl newsItemServiceImpl;
+    @Autowired
+    private GalleryItemRepository galleryItemRepository;
 
     @GetMapping("/index")
     public String index(Model model) {
+        List<GalleryItemDto> recentItems = galleryItemService.getRecentGalleryItems(6);
+        model.addAttribute("recentItems", recentItems);
         model.addAttribute("page", "home");
         return "index";
-    }
-
-    @GetMapping("/news")
-    public String news(Model model){
-        List<NewsItemDto> newsItems = newsItemServiceImpl.getAllNewsItems();
-        model.addAttribute("page", "news");
-        model.addAttribute("newsItems", newsItems);
-        return "news";
-    }
-
-    @GetMapping("/news-single")
-    public String newsSingle(Model model) {
-        model.addAttribute("page", "news-single");
-        return "news-single";
     }
 
     @GetMapping("/services")
@@ -52,7 +44,23 @@ public class HomeController {
     public String gallery(Model model){
         List<GalleryItemDto> galleryItems = galleryItemService.getAllGalleryItems();
         model.addAttribute("galleryItems", galleryItems);
+        model.addAttribute("page", "gallery");
         return "gallery";
+    }
+
+    @GetMapping("/news")
+    public String news(Model model) {
+        List<NewsItemDto> newsItems = newsItemServiceImpl.getAllNewsItems();
+        model.addAttribute("newsItems", newsItems);
+        model.addAttribute("page", "news");
+        return "news";
+    }
+
+
+    @GetMapping("/news-single")
+    public String newsSingle(Model model) {
+        model.addAttribute("page", "news-single");
+        return "news-single";
     }
 
     @GetMapping("/about")
@@ -60,8 +68,8 @@ public class HomeController {
 
         AboutDto aboutDto = aboutService.getAboutInfo();
 
-        model.addAttribute("page", "about");
         model.addAttribute("aboutDto", aboutDto);
+        model.addAttribute("page", "about");
         return "about";
     }
 

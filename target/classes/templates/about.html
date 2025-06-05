@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:with="page='about'">
 <head>
     <meta charset="utf-8">
-    <title>DevFolio Bootstrap Template</title>
+    <title>About</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -23,13 +23,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Main Stylesheet File -->
-    <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
 
 <!--/ Nav Start /-->
-<div th:replace="~{/fragments/navbar :: navbar}"></div>
+<!--<div th:replace="~{/fragments/navbar :: navbar}"></div>-->
+<!--<div th:replace="~{fragments/navbar}"></div>-->
+<div th:replace="~{fragments/navbar}"></div>
 <!--/ Nav End /-->
 <br>
 <br>

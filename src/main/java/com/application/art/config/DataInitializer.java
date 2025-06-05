@@ -38,11 +38,11 @@ public class DataInitializer {
     //in caz ca vreti sa populati baza de date decomentati funtia de mai jos(pe urma o comentati inapoi ca sa nu se adauge)
     //in ciclu repetat datele
 
-//    @PostConstruct
-//    public  void init(){
-//        addAbout();
-//        addGallery();
-//    }
+    @PostConstruct
+    public  void init(){
+        addAbout();
+        addGallery();
+    }
 
     private void addAbout(){
 
